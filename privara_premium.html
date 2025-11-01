@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privara Intellectus - Internship Intake</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background: #0a0e27;
+            color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(0deg, rgba(0,212,255,.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,.02) 1px, transparent 1px),
+                radial-gradient(circle at 20% 50%, rgba(0,212,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,20,147,0.1) 0%, transparent 50%);
+            background-size: 50px 50px, 50px 50px, 600px 600px, 600px 600px;
+            pointer-events: none;
+            z-index: 1;
+            animation: gridShift 20s ease infinite;
+        }
+
+        @keyframes gridShift {
+            0%, 100% { background-position: 0 0, 0 0, 0 0, 0 0; }
+            50% { background-position: 50px 50px, 50px 50px, 50px 50px, 50px 50px; }
+        }
+
+        body > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            border-bottom: 1px solid rgba(0,212,255,0.1);
+        }
+
+        .header-subtitle {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #00d4ff;
+            margin-bottom: 25px;
+            font-weight: 700;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00d4ff, #ff1493, #00d4ff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite, fadeInDown 1s ease;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-description {
+            font-size: 16px;
+            color: #b0b9d4;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Roles Container - Sequential Display */
+        .roles-container {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        /* Large Premium Role Card */
+        .role-card {
+            background: linear-gradient(135deg, #1a1f3a 0%, #0f1729 50%, #1a1f3a 100%);
+            border: 2px solid rgba(0,212,255,0.2);
+            border-radius: 16px;
+            padding: 50px;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease;
+        }
+
+        .role-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            right: -100%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+        .role-card::after {
+            content: '';
+            position: absolute;
+            bottom: -100%;
+            left: -100%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,20,147,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+        .role-card:hover {
+            border-color: rgba(0,212,255,0.6);
+            box-shadow: 0 0 40px rgba(0,212,255,0.2), inset 0 0 40px rgba(0,212,255,0.05);
+            transform: translateY(-10px);
+        }
+
+        .role-card:hover::before {
+            top: -50%;
+            right: -50%;
+        }
+
+        .role-card:hover::after {
+            bottom: -50%;
+            left: -50%;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .role-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(0,212,255,0.1);
+            padding-bottom: 20px;
+        }
+
+        .role-left {
+            flex: 1;
+        }
+
+        .role-number {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .role-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #00d4ff;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .role-duration {
+            font-size: 13px;
+            color: #ff1493;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .apply-badge {
+            background: linear-gradient(135deg, #00d4ff, #ff1493);
+            color: #0a0e27;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .apply-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0,212,255,0.5);
+        }
+
+        .role-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .role-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .role-section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #00d4ff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .role-description {
+            font-size: 14px;
+            color: #b0b9d4;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .skills-list, .requirements-list {
+            font-size: 13px;
+            color: #b0b9d4;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .skills-list li, .requirements-list li {
+            margin-left: 20px;
+            margin-bottom: 8px;
+            list-style: none;
+        }
+
+        .skills-list li::before {
+            content: '▸ ';
+            color: #00d4ff;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .requirements-list li::before {
+            content: '✓ ';
+            color: #ff1493;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1f3a 0%, #0f1729 50%, #1a1f3a 100%);
+            border: 2px solid rgba(0,212,255,0.3);
+            border-radius: 16px;
+            padding: 50px;
+            max-width: 650px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+            animation: slideInUp 0.4s ease;
+        }
+
+        .close-modal {
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            color: #00d4ff;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #ff1493;
+            transform: scale(1.2);
+        }
+
+        .modal-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #00d4ff;
+            letter-spacing: 1px;
+            clear: both;
+            background: linear-gradient(135deg, #00d4ff, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1.5px solid rgba(0,212,255,0.2);
+            color: #ffffff;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
+        input[type="tel"]::placeholder,
+        input[type="number"]::placeholder,
+        textarea::placeholder {
+            color: #556688;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: rgba(0,212,255,0.8);
+            background: rgba(0,212,255,0.08);
+            box-shadow: 0 0 15px rgba(0,212,255,0.2);
+        }
+
+        select {
+            color: #ffffff;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300d4ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 40px;
+        }
+
+        select option {
+            background: #0a0e27;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        select option:checked {
+            background: linear-gradient(#00d4ff, #00d4ff);
+            background-color: #00d4ff !important;
+            color: #0a0e27 !important;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #00d4ff, #ff1493);
+            border: none;
+            color: #0a0e27;
+            font-weight: 700;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-family: 'Space Mono', monospace;
+            margin-top: 30px;
+            box-shadow: 0 0 20px rgba(0,212,255,0.3);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            box-shadow: 0 0 30px rgba(0,212,255,0.6);
+            transform: scale(1.02);
+        }
+
+        .submit-btn:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1.5px solid #00d4ff;
+            color: #00d4ff;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: center;
+            animation: slideIn 0.3s ease;
+            display: none;
+            font-size: 14px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .info-message {
+            background: rgba(0, 212, 255, 0.08);
+            border: 1.5px solid rgba(0,212,255,0.3);
+            color: #b0b9d4;
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0,212,255,0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0,212,255,0.3);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0,212,255,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .role-content {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .role-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 20px 40px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .role-card {
+                padding: 30px;
+            }
+
+            .role-title {
+                font-size: 24px;
+            }
+
+            .role-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .apply-badge {
+                width: 100%;
+                text-align: center;
+            }
+
+            .modal-content {
+                padding: 30px;
+                width: 95%;
+            }
+
+            .modal-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .role-title {
+                font-size: 20px;
+            }
+
+            .role-card {
+                padding: 20px;
+            }
+
+            .role-content {
+                gap: 15px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-subtitle">✦ Privara Labs ✦</div>
+        <h1>INTERNSHIP INTAKE</h1>
+        <p class="header-description">
+            Join the revolution in healthcare AI. Build cutting-edge solutions 
+            that transform how medical data is processed at scale.
+        </p>
+    </header>
+
+    <main class="roles-container">
+        <!-- Role 1 -->
+        <div class="role-card">
+            <div class="role-header">
+                <div class="role-left">
+                    <div class="role-number">01</div>
+                    <h2 class="role-title">ML Research Intern</h2>
+                    <p class="role-duration">Deep Learning • Healthcare AI • 3-6 months</p>
+                </div>
+                <button class="apply-badge" onclick="openModal('ML Research Intern')">APPLY NOW</button>
+            </div>
+
+            <div class="role-content">
+                <div class="role-section">
+                    <div class="role-section-label">About the Role</div>
+                    <p class="role-description">
+                        Build cutting-edge AI models for healthcare document understanding and medical data processing at scale.
+                    </p>
+
+                    <div class="role-section-label">Key Responsibilities</div>
+                    <ul class="requirements-list">
+                        <li>Develop deep learning models for document intelligence</li>
+                        <li>Fine-tune pre-trained architectures on specialized datasets</li>
+                        <li>Optimize model performance through experimentation</li>
+                        <li>Implement state-of-the-art techniques from research papers</li>
+                    </ul>
+                </div>
+
+                <div class="role-section">
+                    <div class="role-section-label">Required Skills</div>
+                    <ul class="skills-list">
+                        <li>Python, PyTorch or TensorFlow</li>
+                        <li>Deep Learning & Neural Networks</li>
+                        <li>Computer Vision or NLP experience</li>
+                        <li>Transfer Learning & Fine-tuning</li>
+                    </ul>
+
+                    <div class="role-section-label">Preferred</div>
+                    <ul class="skills-list">
+                        <li>Healthcare AI projects</li>
+                        <li>Research paper implementation</li>
+                        <li>Kaggle competitions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Role 2 -->
+        <div class="role-card">
+            <div class="role-header">
+                <div class="role-left">
+                    <div class="role-number">02</div>
+                    <h2 class="role-title">ML Engineer Intern</h2>
+                    <p class="role-duration">MLOps • Deployment • 3-6 months</p>
+                </div>
+                <button class="apply-badge" onclick="openModal('ML Engineer Intern')">APPLY NOW</button>
+            </div>
+
+            <div class="role-content">
+                <div class="role-section">
+                    <div class="role-section-label">About the Role</div>
+                    <p class="role-description">
+                        Deploy ML models as scalable, production-ready systems that process healthcare documents at enterprise scale.
+                    </p>
+
+                    <div class="role-section-label">Key Responsibilities</div>
+                    <ul class="requirements-list">
+                        <li>Build production ML pipelines and APIs</li>
+                        <li>Optimize model inference speed & memory</li>
+                        <li>Implement CI/CD workflows & monitoring</li>
+                        <li>Deploy using Docker & cloud platforms</li>
+                    </ul>
+                </div>
+
+                <div class="role-section">
+                    <div class="role-section-label">Required Skills</div>
+                    <ul class="skills-list">
+                        <li>Python & software engineering principles</li>
+                        <li>FastAPI or Flask</li>
+                        <li>Docker & containerization</li>
+                        <li>Git & version control</li>
+                    </ul>
+
+                    <div class="role-section-label">Preferred</div>
+                    <ul class="skills-list">
+                        <li>AWS/GCP/Azure cloud platforms</li>
+                        <li>MLOps tools (MLflow, DVC)</li>
+                        <li>Database systems (PostgreSQL, MongoDB)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Role 3 -->
+        <div class="role-card">
+            <div class="role-header">
+                <div class="role-left">
+                    <div class="role-number">03</div>
+                    <h2 class="role-title">Data Annotation & QA Intern</h2>
+                    <p class="role-duration">Quality Control • Medical Domain • 2-4 months</p>
+                </div>
+                <button class="apply-badge" onclick="openModal('Data Annotation & QA Intern')">APPLY NOW</button>
+            </div>
+
+            <div class="role-content">
+                <div class="role-section">
+                    <div class="role-section-label">About the Role</div>
+                    <p class="role-description">
+                        Build high-quality training datasets and ensure the reliability of our AI systems through rigorous quality assurance.
+                    </p>
+
+                    <div class="role-section-label">Key Responsibilities</div>
+                    <ul class="requirements-list">
+                        <li>Annotate and label medical documents</li>
+                        <li>Validate model predictions & identify errors</li>
+                        <li>Perform QA testing on AI systems</li>
+                        <li>Conduct data quality audits</li>
+                    </ul>
+                </div>
+
+                <div class="role-section">
+                    <div class="role-section-label">Required Skills</div>
+                    <ul class="skills-list">
+                        <li>Exceptional attention to detail</li>
+                        <li>Strong organizational skills</li>
+                        <li>Excel/Google Sheets proficiency</li>
+                        <li>Basic ML understanding</li>
+                    </ul>
+
+                    <div class="role-section-label">Preferred</div>
+                    <ul class="skills-list">
+                        <li>Healthcare/medical background</li>
+                        <li>Previous annotation experience</li>
+                        <li>Medical terminology knowledge</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Role 4 -->
+        <div class="role-card">
+            <div class="role-header">
+                <div class="role-left">
+                    <div class="role-number">04</div>
+                    <h2 class="role-title">Full-Stack Developer Intern</h2>
+                    <p class="role-duration">Web Development • Analytics UI • 3-6 months</p>
+                </div>
+                <button class="apply-badge" onclick="openModal('Full-Stack Developer Intern')">APPLY NOW</button>
+            </div>
+
+            <div class="role-content">
+                <div class="role-section">
+                    <div class="role-section-label">About the Role</div>
+                    <p class="role-description">
+                        Build beautiful, responsive web interfaces that bring our AI technology to life for healthcare professionals and researchers.
+                    </p>
+
+                    <div class="role-section-label">Key Responsibilities</div>
+                    <ul class="requirements-list">
+                        <li>Develop responsive web applications</li>
+                        <li>Create analytics dashboards & visualizations</li>
+                        <li>Integrate ML APIs with frontend</li>
+                        <li>Ensure security & HIPAA compliance</li>
+                    </ul>
+                </div>
+
+                <div class="role-section">
+                    <div class="role-section-label">Required Skills</div>
+                    <ul class="skills-list">
+                        <li>React, Vue, or Next.js</li>
+                        <li>HTML5, CSS3, JavaScript/TypeScript</li>
+                        <li>Node.js or Python backend</li>
+                        <li>REST APIs & Databases</li>
+                    </ul>
+
+                    <div class="role-section-label">Preferred</div>
+                    <ul class="skills-list">
+                        <li>Data visualization libraries</li>
+                        <li>Cloud deployment experience</li>
+                        <li>Healthcare application experience</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Application Modal -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            
+            <div class="success-message" id="successMessage">
+                ✓ Application submitted! Check your WhatsApp for next steps.
+            </div>
+
+            <h2 class="modal-title" id="modalRole">Application</h2>
+
+            <div class="info-message">
+                💬 Your application will be sent directly to our WhatsApp. 
+                Fill all fields accurately for the best results.
+            </div>
+
+            <form id="applicationForm">
+                <input type="hidden" id="roleInput" name="role" value="">
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number (WhatsApp)</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXX XXXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="college">College/University</label>
+                    <input type="text" id="college" name="college" required placeholder="Enter your institution">
+                </div>
+
+                <div class="form-group">
+                    <label for="degree">Degree & Major</label>
+                    <input type="text" id="degree" name="degree" required placeholder="e.g., B.Tech in CSE (AI/ML)">
+                </div>
+
+                <div class="form-group">
+                    <label for="semester">Current Semester</label>
+                    <select id="semester" name="semester" required>
+                        <option value="" style="color: #556688;">Select Semester</option>
+                        <option value="5th" style="color: #ffffff;">5th Semester</option>
+                        <option value="6th" style="color: #ffffff;">6th Semester</option>
+                        <option value="7th" style="color: #ffffff;">7th Semester</option>
+                        <option value="8th" style="color: #ffffff;">8th Semester</option>
+                        <option value="graduate" style="color: #ffffff;">Graduate</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Relevant Experience (Years)</label>
+                    <input type="number" id="experience" name="experience" min="0" max="10" placeholder="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="linkedIn">LinkedIn Profile</label>
+                    <input type="text" id="linkedIn" name="linkedIn" placeholder="https://linkedin.com/in/yourprofile">
+                </div>
+
+                <div class="form-group">
+                    <label for="github">GitHub Profile</label>
+                    <input type="text" id="github" name="github" placeholder="https://github.com/yourprofile">
+                </div>
+
+                <div class="form-group">
+                    <label for="portfolio">Portfolio/Website</label>
+                    <input type="text" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="motivation">Why do you want to join?</label>
+                    <textarea id="motivation" name="motivation" required placeholder="Tell us about your interest..."></textarea>
+                </div>
+
+                <div class="form-group" style="font-size: 12px; color: #b0b9d4;">
+                    <input type="checkbox" id="consent" name="consent" required style="margin-right: 10px; cursor: pointer;">
+                    <label for="consent" style="display: inline; text-transform: none; letter-spacing: normal; margin: 0;">
+                        I consent to Privara Labs processing my information for this application
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">SEND VIA WHATSAPP</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const WHATSAPP_NUMBER = '919944877921';
+
+        function openModal(roleName) {
+            const modal = document.getElementById('applicationModal');
+            const roleInput = document.getElementById('roleInput');
+            const modalRole = document.getElementById('modalRole');
+            
+            roleInput.value = roleName;
+            modalRole.textContent = `${roleName} - Application`;
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            
+            document.getElementById('successMessage').classList.remove('show');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('applicationModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+            document.getElementById('applicationForm').reset();
+            document.getElementById('successMessage').classList.remove('show');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('applicationModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        function generateWhatsAppMessage(formData) {
+            const message = `
+🚀 *NEW INTERNSHIP APPLICATION*
+
+*Position:* ${formData.get('role')}
+
+*Applicant Details:*
+Name: ${formData.get('fullName')}
+Email: ${formData.get('email')}
+Phone: ${formData.get('phone')}
+
+*Education:*
+College: ${formData.get('college')}
+Degree: ${formData.get('degree')}
+Semester: ${formData.get('semester')}
+
+*Experience:*
+Years: ${formData.get('experience')}
+
+*Profiles:*
+LinkedIn: ${formData.get('linkedIn') || 'N/A'}
+GitHub: ${formData.get('github') || 'N/A'}
+Portfolio: ${formData.get('portfolio') || 'N/A'}
+
+*Motivation:*
+${formData.get('motivation')}
+
+---
+Submitted via Privara Intellectus Portal
+`;
+            return message;
+        }
+
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.querySelector('.submit-btn');
+            const successMsg = document.getElementById('successMessage');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'SENDING...';
+            successMsg.classList.remove('show');
+
+            try {
+                const formData = new FormData(this);
+                const message = generateWhatsAppMessage(formData);
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+                
+                successMsg.classList.add('show');
+                document.getElementById('applicationForm').reset();
+                
+                setTimeout(() => {
+                    window.open(whatsappURL, '_blank');
+                    setTimeout(() => {
+                        closeModal();
+                    }, 1000);
+                }, 1500);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SEND VIA WHATSAPP';
+            }
+        });
+    </script>
+</body>
+</html>
